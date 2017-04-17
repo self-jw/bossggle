@@ -1,0 +1,37 @@
+/*body {
+  background-color: #cdc5cc;
+  background-color: #eee4e5;
+}*/
+
+.left-side {
+    width: 30%;
+    height: 650px;
+    margin-top: 2%;
+    padding-left: 2%;
+    background: #ebe1ae;
+    float: left;
+}
+
+.right-side {
+    margin-left: 30%;
+    margin-top: 2%;
+    height: 650px;
+    background: #eee4e5;
+}
+
+.score {
+    /*margin-left: 30%;*/
+    width: 100%;
+    margin-top: 15%;
+    margin-bottom: 2%;
+    /*height: 650px;*/
+    /*background: #eee4e5;*/
+}
+
+hr {
+    display: block;
+    border: 0;
+    border-top: 1px solid black;
+    margin-right: 5%;
+    padding: 0;
+}
