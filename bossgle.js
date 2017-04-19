@@ -1,8 +1,10 @@
+
 $(document).ready(function () {
 
   var logHTML = '';
   var totalScore = 0;
   var totalWords = 0;
+  var wordHash = {};
 
   // Set initial random letters.
   randomLetters();
@@ -13,7 +15,8 @@ $(document).ready(function () {
 
     var idElement = document.getElementById(this.id);
     var content = idElement.innerHTML;
-    console.log(content);
+
+    // console.log(content);
 
     logHTML += content;
     $('#letters').html(logHTML);
@@ -28,23 +31,29 @@ $(document).ready(function () {
   // Submit the letter field and add to word list.
   $('#submit').on('click', function () {
     if (logHTML.length > 0) {
-      document.getElementById('chosen-words').innerHTML += '<br>' + logHTML;
+      console.log('Before If -- Word in Dic : ' + logHTML + '  Score in Dic: ' + wordHash[logHTML]);
+      console.log(Object.keys(wordHash));
+      if (!(logHTML in wordHash)) {
+        document.getElementById('chosen-words').innerHTML += '<br>' + logHTML;
 
-      console.log(logHTML.toLowerCase());
-      // var oneWordScore = checkWord(logHTML.toLowerCase());
-      var oneWordScore = checkWord(logHTML);
-      document.getElementById('word-score').innerHTML += '<br>' + oneWordScore;
-      totalScore += oneWordScore;
+        // console.log(logHTML.toLowerCase());
 
-      // document.getElementById('chosen-words').innerHTML = '<br>';
-      // document.getElementById('word-score').innerHTML = '<br>';
+        var oneWordScore = checkWord(logHTML);
+        document.getElementById('word-score').innerHTML += '<br>' + oneWordScore;
+        totalScore += oneWordScore;
 
-      logHTML = '';
+        document.getElementById('score-tally').innerHTML = totalScore;
+
+        // console.log(totalScore);
+
+        // Add key/value to word hash.
+        wordHash[logHTML] = oneWordScore;
+        console.log('Word in Dic : ' + logHTML + '  Score in Dic: ' + wordHash[logHTML]);
+      }
     }
 
-    document.getElementById('score-tally').innerHTML = totalScore;
-
-    console.log(totalScore);
+    // Clear the log html string. Always at the end!
+    logHTML = '';
   });
 
   // Reset board.
@@ -54,6 +63,7 @@ $(document).ready(function () {
     $('#letters').html('');
     $('#score-tally').html('');
     totalScore = 0;
+    wordHash = {};
     randomLetters();
   });
 
@@ -63,11 +73,22 @@ function checkWord(word) {
 
   var wordScore = 0;
 
-  console.log('In Word Function : ' + word.toLowerCase());
+  // console.log('In Word Function : ' + word.toLowerCase());
 
-  if (isBasicWord(word.toLowerCase())) {
+  var wordCase;
+
+  // The 1000 word dictionary is in lowere case except 'I'.
+  // Cover this condition.
+  if (word !== 'I') {
+    wordCase = word.toLowerCase();
+  } else {
+    wordCase = word;
+  }
+
+  if (isBasicWord(wordCase)) {
     wordScore = 9 * (word.length);
-    console.log('Index : ' + isBasicWord(word) + ' Word : ' + word + ' Score : ' + wordScore);
+
+    // console.log('Word : ' + wordCase + ' Score : ' + wordScore);
   }
 
   return wordScore;
