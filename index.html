@@ -14,6 +14,9 @@
   <!-- Latest compiled JavaScript -->
   <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+  <!-- Word Dictionary -->
+  <script src="https://cdn.rawgit.com/tannerwelsh/dcd33611c1bc615fd5a1c8cadc05d1b2/raw/470cde9d72927fef717f354b3ba3718a0aaabb99/basicWords.js" charset="utf-8"></script>
+
   <!-- External files -->
   <link type="text/css" rel="stylesheet" href="main.css">
   <script type="text/javascript" src="bossgle.js"></script>
@@ -23,20 +26,28 @@
   <div class="container-fluid">
     <br>
     <div class="row">
+      <!-- Left Panel -->
       <div class="col-md-4 no-float" style="background-color:#ebe1ae">
           <h1>Bossggle</h1>
           <p>Make words by clicking the letters! Only dictionary words count.</p>
           <div class="score">
             <!--  Add the score here-->
-            <h5>Score</h5>
+            <h5>Total Score</h5>
+            <h6 id="score-tally">0</h6>
             <hr/>
             <!--  Add the word count here-->
-            <div>
-              <h5>Words</h5>
+          <div>
+            <h5>Words</h5>
+            <div class="col-md-6" style="background-color:green">
               <h6 id="chosen-words"></h6>
             </div>
+            <div class="col-md-6" style="background-color:orange">
+              <h6 id="word-score"></h6>
+            </div>
           </div>
+        </div>
       </div>
+      <!-- Right Panel -->
       <div class="col-md-8 no-float" style="background-color:#e4e9e2" >
         <h1 id="letters">Selected Letters</h1>
         <button id="submit" class="btn btn-primary" style="opacity:0.65">Submit</button>

@@ -7,7 +7,8 @@ $(document).ready(function () {
   // Set initial random letters.
   randomLetters();
 
-  // The 16 boxes are in a list.
+  // The 16 boxes are in the list section.
+  // TODO: Don't restrict to section.
   $('li').click(function () {
 
     var idElement = document.getElementById(this.id);
@@ -28,16 +29,49 @@ $(document).ready(function () {
   $('#submit').on('click', function () {
     if (logHTML.length > 0) {
       document.getElementById('chosen-words').innerHTML += '<br>' + logHTML;
+
+      console.log(logHTML.toLowerCase());
+      // var oneWordScore = checkWord(logHTML.toLowerCase());
+      var oneWordScore = checkWord(logHTML);
+      document.getElementById('word-score').innerHTML += '<br>' + oneWordScore;
+      totalScore += oneWordScore;
+
+      // document.getElementById('chosen-words').innerHTML = '<br>';
+      // document.getElementById('word-score').innerHTML = '<br>';
+
       logHTML = '';
     }
+
+    document.getElementById('score-tally').innerHTML = totalScore;
+
+    console.log(totalScore);
   });
 
   // Reset board.
   $('#reset').on('click', function () {
+    $('#word-score').html('');
+    $('#chosen-words').html('');
+    $('#letters').html('');
+    $('#score-tally').html('');
+    totalScore = 0;
     randomLetters();
   });
 
 });
+
+function checkWord(word) {
+
+  var wordScore = 0;
+
+  console.log('In Word Function : ' + word.toLowerCase());
+
+  if (isBasicWord(word.toLowerCase())) {
+    wordScore = 9 * (word.length);
+    console.log('Index : ' + isBasicWord(word) + ' Word : ' + word + ' Score : ' + wordScore);
+  }
+
+  return wordScore;
+}
 
 function randomLetters() {
 
