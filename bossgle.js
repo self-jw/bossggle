@@ -18,11 +18,12 @@ $(document).ready(function () {
     logHTML = '';
   });
 
-  // Submit the letter field.
+  // Submit the letter field and add to word list.
   $('#submit').on('click', function () {
-    // $('#chosen-words').html(logHTML);
-    document.getElementById('chosen-words').innerHTML += '<br>' + logHTML;
-    logHTML = '';
+    if (logHTML.length > 0) {
+      document.getElementById('chosen-words').innerHTML += '<br>' + logHTML;
+      logHTML = '';
+    }
   });
 
 });
