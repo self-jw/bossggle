@@ -16,92 +16,84 @@
 
   <!-- External files -->
   <link type="text/css" rel="stylesheet" href="main.css">
-  <script type="text/javascript" src="bossggle.js"></script>
+  <script type="text/javascript" src="bossgle.js"></script>
 </head>
 
 <body>
   <div class="container-fluid">
-    <div class="left-side">
-      <h1>Bossggle</h1>
-      <p>Make words by clicking the letters! Only dictionary words count.</p>
-      <div class="score">
-        <!--  Add the score here-->
-        <h6>Score</h6>
-        <hr/>
-        <!--  Add the word count here-->
-        <div>
-          <h6>Words</h6>
-        </div>
+    <br>
+    <div class="row">
+      <div class="col-md-4 no-float" style="background-color:#ebe1ae">
+          <h1>Bossggle</h1>
+          <p>Make words by clicking the letters! Only dictionary words count.</p>
+          <div class="score">
+            <!--  Add the score here-->
+            <h6>Score</h6>
+            <hr/>
+            <!--  Add the word count here-->
+            <div>
+              <h5>Words</h5>
+              <h6 id="chosen-words"></h6>
+            </div>
+          </div>
       </div>
-    </div>
-    <div class="right-side">
-        <h1>Clicked words go here.</h1>
-          <button type="submit" class="btn btn-primary" style="opacity:0.65">Submit</button>
-          <button class="btn btn-danger" style="opacity:0.65">Clear</button>
+      <div class="col-md-8 no-float" style="background-color:#e4e9e2" >
+        <h1 id="letters">Selected Letters</h1>
+        <button id="submit" class="btn btn-primary" style="opacity:0.65">Submit</button>
+        <button id="clear" class="btn btn-success" style="opacity:0.65">Clear Selection</button>
+        <button class="btn btn-danger" style="opacity:0.65">Reset Board</button>
         <hr/>
         <!-- First Row -->
-        <div class="box">
-          <div class="content">
-            box #1
-          </div>
-        </div>
-        <div class="box">
-          <div class="content">
-            box #2
-          </div>
-        </div>
-        <div class="box">
-          <div class="content">
-            box #3
-          </div>
-        </div>
-        <div class="box">
-          <div class="content">
-            box #4
-          </div>
-        </div>
+        <!-- <div class="row1" style="background-color:blue">
+          <div class="box"> <div class="content"> box #1 </div> </div>
+          <div class="box"> <div class="content"> box #2 </div> </div>
+          <div class="box"> <div class="content"> box #3 </div> </div>
+          <div class="box"> <div class="content"> box #4 </div> </div>
+        </div> -->
 
         <!-- Second Row -->
-        <div class="box">
-          <div class="content">
-            box #5
-          </div>
-        </div>
-        <div class="box">
-          <div class="content">
-            box #6
-          </div>
-        </div>
-        <div class="box">
-          <div class="content">
-            box #7
-          </div>
-        </div>
-        <div class="box">
-          <div class="content">
-            box #8
-          </div>
-        </div>
+        <!-- <div class="row" style="background-color:yellow">
+          <div class="box"> <div class="content"> box #5 </div> </div>
+          <div class="box"> <div class="content"> box #6 </div> </div>
+          <div class="box"> <div class="content"> box #7 </div> </div>
+          <div class="box"> <div class="content"> box #8 </div> </div>
+        </div> -->
+
         <!-- Third Row -->
-        <div class="box">
-          <div class="content">
-            box #9
-          </div>
-        </div>
-        <div class="box">
-          <div class="content">
-            box #10
-          </div>
-        </div>
-        <div class="box">
-          <div class="content">
-            box #11
-          </div>
-        </div>
-        <div class="box">
-          <div class="content">
-            box #12
-          </div>
-        </div>
+        <!-- <div class="row" style="background-color:green">
+          <div class="box"> <div class="content"> box #9 </div> </div>
+          <div class="box"> <div class="content"> box #10 </div> </div>
+          <div class="box"> <div class="content"> box #11 </div> </div>
+          <div class="box"> <div class="content"> box #12 </div> </div>
+        </div> -->
+
+        <ul class="flex-container" style="text:center">
+          <!-- <button id="tempF" class="btn btn-primary" style="opacity:0.65">&deg;F</button> -->
+          <li id="box1" class="flex-item box">A</li>
+          <li id="box2" class="flex-item box">B</li>
+          <li id="box3" class="flex-item box">C</li>
+          <li id="box4" class="flex-item box">D</li>
+        </ul>
+        <ul class="flex-container">
+          <li id="box5" class="flex-item box">E</li>
+          <li id="box6" class="flex-item box">F</li>
+          <li id="box7" class="flex-item box">G</li>
+          <li id="box8" class="flex-item box">H</li>
+        </ul>
+        <ul class="flex-container">
+          <li id="box9" class="flex-item box">Box #9</li>
+          <li id="box10" class="flex-item box">Box #10</li>
+          <li id="box11" class="flex-item box">Box #11</li>
+          <li id="box12" class="flex-item box">Box #12</li>
+        </ul>
+        <ul class="flex-container-last">
+          <li id="box13" class="flex-item box">Box #13</li>
+          <li id="box14" class="flex-item box">Box #14</li>
+          <li id="box15" class="flex-item box">Box #15</li>
+          <li id="box16" class="flex-item box">Box #16</li>
+        </ul>
+
+      </div>
+    </div>
   </div>
 </body>
