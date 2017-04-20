@@ -1,98 +1,103 @@
 
 $(document).ready(function () {
 
-  var lettersHTML = '';
-  var totalScore = 0;
-  var totalWords = 0;
-  var wordHash = {};
+    var lettersHTML = '';
+    var totalScore = 0;
+    var totalWords = 0;
+    var wordHash = {};
 
-  // Set initial random letters.
-  randomLetters();
-
-  // The 16 boxes are in the list section.
-  $('.aligner-item').click(function () {
-
-    var idElement = document.getElementById(this.id);
-
-    if (!idElement.disabled) {
-      var content = idElement.innerHTML;
-      console.log(idElement);
-
-      idElement.style.backgroundColor = 'red';
-
-      lettersHTML += content;
-      $('#letters').html(lettersHTML);
-
-      // document.getElementById('box1').disabled = true;
-
-      var x = idElement.disabled;
-      console.log('Before Disable : ' + x);
-
-      // Disable clicked button.
-      idElement.disabled = true;
-      x = idElement.disabled;
-
-      console.log('After Disable : ' + x);
-    }
-
-    // document.getElementById(this.id).disabled = 'disabled';
-
-  });
-
-  // Clear the letter field.
-  $('#clear').on('click', function () {
-    resetBoxes();
-    $('#letters').html('Selected Letters');
-    lettersHTML = '';
-  });
-
-  // Submit the letter field and add to word list.
-  $('#submit').on('click', function () {
-    if (lettersHTML.length > 0) {
-      if (!(lettersHTML in wordHash)) {
-        document.getElementById('chosen-words').innerHTML += lettersHTML + '<br>';
-
-        // Check if word has at least three letters.
-        // If so update word score and total score.
-        var oneWordScore = 0;
-        if (lettersHTML.length > 2) {
-          oneWordScore = checkWord(lettersHTML);
-          totalScore += oneWordScore;
-        }
-
-        document.getElementById('word-score').innerHTML += oneWordScore + '<br>';
-        document.getElementById('score-tally').innerHTML = totalScore;
-
-        // Add key/value to word hash.
-        wordHash[lettersHTML] = oneWordScore;
-
-        // console.log('Word in Dic : ' + lettersHTML + '  Score in Dic: ' + wordHash[lettersHTML]);
-        $('#letters').html('<br>');
-        lettersHTML = '';
-
-        // Rest the box colors.
-        resetBoxes();
-      }
-    }
-
-    // Clear the log html string. Always at the end!
-    lettersHTML = '';
-  });
-
-  // Reset board.
-  $('#reset').on('click', function () {
-    $('#word-score').html('');
-    $('#chosen-words').html('');
-    $('#letters').html('Selected Letters');
-    $('#score-tally').html('');
-    lettersHTML = '';
-    totalScore = 0;
-    wordHash = {};
-    resetBoxes();
+    // Set initial random letters.
     randomLetters();
-  });
 
-});
+    if (timer() === 0) {
+      console.log('Game Ended');
+    }
+
+    // The 16 boxes are in the list section.
+    $('.aligner-item').click(function () {
+
+      var idElement = document.getElementById(this.id);
+
+      if (!idElement.disabled) {
+        var content = idElement.innerHTML;
+
+        idElement.style.backgroundColor = 'red';
+
+        lettersHTML += content;
+        $('#letters').html(lettersHTML);
+
+        // Disable clicked button.
+        idElement.disabled = true;
+      }
+
+    });
+
+    // Clear the letter field.
+    $('#clear').on('click', function () {
+      resetBoxes();
+      $('#letters').html('Selected Letters');
+      lettersHTML = '';
+    });
+
+    // Submit the letter field and add to word list.
+    $('#submit').on('click', function () {
+      if (lettersHTML.length > 0) {
+        if (!(lettersHTML in wordHash)) {
+          // document.getElementById('chosen-words').innerHTML += lettersHTML + '<br>';
+
+          // Check if word has at least three letters.
+          // If so update word score and total score.
+          var oneWordScore = 0;
+          if (lettersHTML.length > 2) {
+            oneWordScore = checkWord(lettersHTML);
+            totalScore += oneWordScore;
+          }
+
+          document.getElementById('score-tally').innerHTML = totalScore;
+
+          // Add key/value to word hash.
+          wordHash[lettersHTML] = oneWordScore;
+
+          // Convert hash to 2 arrays. One for keys and the other for values.
+          var keys = Object.keys(wordHash);
+          var values = keys.map(function (v) { return wordHash[v]; });
+
+          // Clear words and scores before reversing them.
+          document.getElementById('chosen-words').innerHTML = '';
+          document.getElementById('word-score').innerHTML = '';
+
+          // Reverse words and scores.
+          for (var i = keys.length - 1; i >= 0; i--) {
+            document.getElementById('chosen-words').innerHTML += keys[i] + '<br>';
+            document.getElementById('word-score').innerHTML += values[i] + '<br>';
+          }
+
+          $('#letters').html('<br>');
+          lettersHTML = '';
+
+          // Reset the box colors.
+          resetBoxes();
+        }
+      }
+
+      // Clear the log html string. Always at the end!
+      lettersHTML = '';
+    });
+
+    // Reset board.
+    $('#reset').on('click', function () {
+      $('#word-score').html('');
+      $('#chosen-words').html('');
+      $('#letters').html('Selected Letters');
+      $('#score-tally').html('');
+      lettersHTML = '';
+      totalScore = 0;
+      resetBoxes();
+      randomLetters();
+      wordHash = {};
+    });
+
+  });
 
 function checkWord(word) {
 
@@ -146,4 +151,21 @@ function resetBoxes() {
     idElement.style.backgroundColor = '#69b390';
     idElement.disabled = false;
   }
+}
+
+function timer() {
+  var timeInterval = 9;
+  setInterval(function () {
+    document.getElementById('timer').innerHTML = timeInterval;
+    if (timeInterval === 0) {
+      // alert('Time Ran Out!');
+      return timeInterval;
+    }
+
+    timeInterval--;
+  }, 1000);
+}
+
+function logWords() {
+
 }

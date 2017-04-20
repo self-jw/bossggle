@@ -71,9 +71,17 @@ hr {
   text-align: center;
   text-decoration: none;
   font-size: 13px;
-  cursor: pointer;
   width: 8%;
-  float: center;
+}
+
+.btn-start {
+  color: white;
+  background-color: #532b6f;
+  text-align: right;
+}
+
+.btn-start:hover {
+  background-color: #2bb19e;
 }
 
 .button:hover {
@@ -93,11 +101,6 @@ hr {
 
 .box:visited {
     color: green;
-}
-
-.box-disabled {
-    color: white;
-    cursor: not-allowed;;
 }
 
 .score-right {

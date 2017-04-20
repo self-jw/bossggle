@@ -26,10 +26,18 @@
   <div class="container-fluid">
     <br>
     <div class="row">
+
       <!-- Left Panel -->
       <div class="col-md-4 no-float" style="background-color:#f6f4c7">
+
         <h1>Bossggle</h1>
-        <p>Make words by clicking the letters! Only dictionary words count.</p>
+        <p>Make words by clicking the letters!</p>
+        <ul>
+          <li>Only dictionary words count.</li>
+          <li>Each word must be a minimum of 3 letters.</li>
+          <li>You have 60 seconds.</li>
+        </ul>
+
         <!-- <div class="score"> -->
         <div class="score">
           <!--  Add the score here-->
@@ -49,12 +57,19 @@
           </div>
         </div>
       </div>
+
       <!-- Right Panel -->
       <div class="col-md-8 no-float" style="background-color:#e4e9e2">
-        <h1 id="letters">Selected Letters</h1>
-        <button id="submit" class="btn btn-primary" style="opacity:0.65">Submit</button>
-        <button id="clear" class="btn btn-success" style="opacity:0.65">Clear Selection</button>
-        <button id="reset" class="btn btn-danger" style="opacity:0.65">Reset Board</button>
+
+        <div style="text-align:center">
+          <h1 id="letters">Selected Letters</h1>
+          <button id="submit" class="btn btn-primary" style="opacity:0.65">Submit</button>
+          <button id="clear" class="btn btn-success" style="opacity:0.65">Clear</button>
+          <button id="reset" class="btn btn-danger" style="opacity:0.65">Reset Board</button>
+        </div>
+        <div>
+          <button id="start" class="btn btn-start" style="opacity:0.5">Start Game</button>
+        </div>
         <hr/>
 
         <!-- First Row -->
@@ -64,6 +79,7 @@
           <div id="box3" class="aligner-item box">B3</div>
           <div id="box4" class="aligner-item box">B4</div>
         </div>
+
         <!-- Second Row -->
         <div class="aligner">
           <div id="box5" class="aligner-item box">B1</div>
@@ -71,6 +87,7 @@
           <div id="box7" class="aligner-item box">B3</div>
           <div id="box8" class="aligner-item box">B4</div>
         </div>
+
         <!-- Third Row -->
         <div class="aligner">
           <div id="box9" class="aligner-item box">B1</div>
@@ -78,6 +95,7 @@
           <div id="box11" class="aligner-item box">B3</div>
           <div id="box12" class="aligner-item box">B4</div>
         </div>
+
         <!-- Fourth Row -->
         <div class="aligner">
           <div id="box13" class="aligner-item box">B1</div>
@@ -86,24 +104,11 @@
           <div id="box16" class="aligner-item box">B4</div>
         </div>
 
-        <!-- <ul class="flex-container">
-          <li id="box5" class="flex-item box">E</li>
-          <li id="box6" class="flex-item box">F</li>
-          <li id="box7" class="flex-item box">G</li>
-          <li id="box8" class="flex-item box">H</li>
-        </ul>
-        <ul class="flex-container">
-          <li id="box9" class="flex-item box">I</li>
-          <li id="box10" class="flex-item box">J</li>
-          <li id="box11" class="flex-item box">K</li>
-          <li id="box12" class="flex-item box">L</li>
-        </ul>
-        <ul class="flex-container-last">
-          <li id="box13" class="flex-item box">M</li>
-          <li id="box14" class="flex-item box">N</li>
-          <li id="box15" class="flex-item box">O</li>
-          <li id="box16" class="flex-item box">P</li>
-        </ul> -->
+        <!-- Timer -->
+        <div>
+          <h3 style="text-align:center">Time Left : <span id='timer'>60</span></h3>
+        </div>
+
       </div>
     </div>
   </div>
