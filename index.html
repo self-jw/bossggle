@@ -27,22 +27,22 @@
     <br>
     <div class="row">
       <!-- Left Panel -->
-      <div class="col-md-4 no-float" style="background-color:#ebe1ae">
+      <div class="col-md-4 no-float" style="background-color:#f6f4c7">
         <h1>Bossggle</h1>
         <p>Make words by clicking the letters! Only dictionary words count.</p>
+        <!-- <div class="score"> -->
         <div class="score">
           <!--  Add the score here-->
-          <h5>Total Score</h5>
-          <h6 id="score-tally">0</h6>
+          <h5>Score<span id="score-tally" class="score-right">0</span></h5>
           <hr/>
           <div>
             <!--  Add the word count here-->
             <h5>Words</h5>
-            <div class="col-md-6" style="background-color:green">
-              <h6 id="chosen-words"></h6>
+            <div class="col-md-10" style="background-color:#9bd4f4">
+              <h5 id="chosen-words"></h5>
             </div>
-            <div class="col-md-6" style="background-color:orange">
-              <h6 id="word-score"></h6>
+            <div class="col-md-2" style="background-color:#9bd4f4">
+              <h5 id="word-score" class="score-bg" style="text-align:right"></h5>
             </div>
           </div>
         </div>
@@ -54,33 +54,9 @@
         <button id="clear" class="btn btn-success" style="opacity:0.65">Clear Selection</button>
         <button id="reset" class="btn btn-danger" style="opacity:0.65">Reset Board</button>
         <hr/>
-        <!-- First Row -->
-        <!-- <div class="row1" style="background-color:blue">
-          <div class="box"> <div class="content"> box #1 </div> </div>
-          <div class="box"> <div class="content"> box #2 </div> </div>
-          <div class="box"> <div class="content"> box #3 </div> </div>
-          <div class="box"> <div class="content"> box #4 </div> </div>
-        </div> -->
-
-        <!-- Second Row -->
-        <!-- <div class="row" style="background-color:yellow">
-          <div class="box"> <div class="content"> box #5 </div> </div>
-          <div class="box"> <div class="content"> box #6 </div> </div>
-          <div class="box"> <div class="content"> box #7 </div> </div>
-          <div class="box"> <div class="content"> box #8 </div> </div>
-        </div> -->
-
-        <!-- Third Row -->
-        <!-- <div class="row" style="background-color:green">
-          <div class="box"> <div class="content"> box #9 </div> </div>
-          <div class="box"> <div class="content"> box #10 </div> </div>
-          <div class="box"> <div class="content"> box #11 </div> </div>
-          <div class="box"> <div class="content"> box #12 </div> </div>
-        </div> -->
 
         <!-- First Row -->
         <ul class="flex-container" style="text:center">
-          <!-- <button id="tempF" class="btn btn-primary" style="opacity:0.65">&deg;F</button> -->
           <li id="box1" class="flex-item box">A</li>
           <li id="box2" class="flex-item box">B</li>
           <li id="box3" class="flex-item box">C</li>

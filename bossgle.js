@@ -10,13 +10,13 @@ $(document).ready(function () {
   randomLetters();
 
   // The 16 boxes are in the list section.
-  // TODO: Don't restrict to section.
+  // TODO: Don't restrict to particular section.
   $('li').click(function () {
 
     var idElement = document.getElementById(this.id);
     var content = idElement.innerHTML;
 
-    // console.log(content);
+    idElement.style.backgroundColor = 'red';
 
     logHTML += content;
     $('#letters').html(logHTML);
@@ -31,24 +31,22 @@ $(document).ready(function () {
   // Submit the letter field and add to word list.
   $('#submit').on('click', function () {
     if (logHTML.length > 0) {
-      console.log('Before If -- Word in Dic : ' + logHTML + '  Score in Dic: ' + wordHash[logHTML]);
-      console.log(Object.keys(wordHash));
       if (!(logHTML in wordHash)) {
-        document.getElementById('chosen-words').innerHTML += '<br>' + logHTML;
-
-        // console.log(logHTML.toLowerCase());
+        document.getElementById('chosen-words').innerHTML += logHTML + '<br>';
 
         var oneWordScore = checkWord(logHTML);
-        document.getElementById('word-score').innerHTML += '<br>' + oneWordScore;
+        document.getElementById('word-score').innerHTML += oneWordScore + '<br>';
         totalScore += oneWordScore;
 
         document.getElementById('score-tally').innerHTML = totalScore;
 
-        // console.log(totalScore);
-
         // Add key/value to word hash.
         wordHash[logHTML] = oneWordScore;
-        console.log('Word in Dic : ' + logHTML + '  Score in Dic: ' + wordHash[logHTML]);
+
+        // console.log('Word in Dic : ' + logHTML + '  Score in Dic: ' + wordHash[logHTML]);
+
+        // Rest the box colors.
+        resetBoxColor();
       }
     }
 
@@ -60,10 +58,11 @@ $(document).ready(function () {
   $('#reset').on('click', function () {
     $('#word-score').html('');
     $('#chosen-words').html('');
-    $('#letters').html('');
+    $('#letters').html('Selected Letters');
     $('#score-tally').html('');
     totalScore = 0;
     wordHash = {};
+    resetBoxColor();
     randomLetters();
   });
 
@@ -72,9 +71,6 @@ $(document).ready(function () {
 function checkWord(word) {
 
   var wordScore = 0;
-
-  // console.log('In Word Function : ' + word.toLowerCase());
-
   var wordCase;
 
   // The 1000 word dictionary is in lowere case except 'I'.
@@ -87,8 +83,6 @@ function checkWord(word) {
 
   if (isBasicWord(wordCase)) {
     wordScore = 9 * (word.length);
-
-    // console.log('Word : ' + wordCase + ' Score : ' + wordScore);
   }
 
   return wordScore;
@@ -110,6 +104,18 @@ function randomLetters() {
     // Change box to new character.
     var boxID = 'box' + i;
     document.getElementById(boxID).innerHTML = char;
+    var idElement = document.getElementById(boxID);
   }
 
+}
+
+// Reset the 16 boxes to original color.
+function resetBoxColor() {
+  for (var i = 1; i < 17; i++) {
+    var boxID = 'box' + i;
+    var idElement = document.getElementById(boxID);
+
+    // TODO: Color to global variable.
+    idElement.style.backgroundColor = '#69b390';
+  }
 }

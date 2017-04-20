@@ -107,6 +107,9 @@ hr {
 .box:hover {
     background-color: #f7bfa5;
 }
+.box::selection {
+  background-color: blue;
+}
 
 .box:active {
     background-color: yellow;
@@ -114,4 +117,14 @@ hr {
 
 .box:visited {
     color: green;
+}
+.score-right {
+  color: #b05c04;
+  float: right;
+}
+
+.score-bg {
+  color: #b05c04;
+  /*background-color: #b05c04;*/
+  text-align: center;
 }
