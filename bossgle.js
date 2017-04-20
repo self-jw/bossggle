@@ -10,21 +10,38 @@ $(document).ready(function () {
   randomLetters();
 
   // The 16 boxes are in the list section.
-  // TODO: Don't restrict to particular section.
   $('.aligner-item').click(function () {
 
     var idElement = document.getElementById(this.id);
-    var content = idElement.innerHTML;
 
-    idElement.style.backgroundColor = 'red';
+    if (!idElement.disabled) {
+      var content = idElement.innerHTML;
+      console.log(idElement);
 
-    lettersHTML += content;
-    $('#letters').html(lettersHTML);
+      idElement.style.backgroundColor = 'red';
+
+      lettersHTML += content;
+      $('#letters').html(lettersHTML);
+
+      // document.getElementById('box1').disabled = true;
+
+      var x = idElement.disabled;
+      console.log('Before Disable : ' + x);
+
+      // Disable clicked button.
+      idElement.disabled = true;
+      x = idElement.disabled;
+
+      console.log('After Disable : ' + x);
+    }
+
+    // document.getElementById(this.id).disabled = 'disabled';
+
   });
 
   // Clear the letter field.
   $('#clear').on('click', function () {
-    resetBoxColor();
+    resetBoxes();
     $('#letters').html('Selected Letters');
     lettersHTML = '';
   });
@@ -35,19 +52,26 @@ $(document).ready(function () {
       if (!(lettersHTML in wordHash)) {
         document.getElementById('chosen-words').innerHTML += lettersHTML + '<br>';
 
-        var oneWordScore = checkWord(lettersHTML);
-        document.getElementById('word-score').innerHTML += oneWordScore + '<br>';
-        totalScore += oneWordScore;
+        // Check if word has at least three letters.
+        // If so update word score and total score.
+        var oneWordScore = 0;
+        if (lettersHTML.length > 2) {
+          oneWordScore = checkWord(lettersHTML);
+          totalScore += oneWordScore;
+        }
 
+        document.getElementById('word-score').innerHTML += oneWordScore + '<br>';
         document.getElementById('score-tally').innerHTML = totalScore;
 
         // Add key/value to word hash.
         wordHash[lettersHTML] = oneWordScore;
 
         // console.log('Word in Dic : ' + lettersHTML + '  Score in Dic: ' + wordHash[lettersHTML]);
+        $('#letters').html('<br>');
+        lettersHTML = '';
 
         // Rest the box colors.
-        resetBoxColor();
+        resetBoxes();
       }
     }
 
@@ -61,9 +85,10 @@ $(document).ready(function () {
     $('#chosen-words').html('');
     $('#letters').html('Selected Letters');
     $('#score-tally').html('');
+    lettersHTML = '';
     totalScore = 0;
     wordHash = {};
-    resetBoxColor();
+    resetBoxes();
     randomLetters();
   });
 
@@ -111,12 +136,14 @@ function randomLetters() {
 }
 
 // Reset the 16 boxes to original color.
-function resetBoxColor() {
+// Enable the boxes.
+function resetBoxes() {
   for (var i = 1; i < 17; i++) {
     var boxID = 'box' + i;
     var idElement = document.getElementById(boxID);
 
     // TODO: Color to global variable?
     idElement.style.backgroundColor = '#69b390';
+    idElement.disabled = false;
   }
 }
