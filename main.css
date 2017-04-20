@@ -12,6 +12,27 @@
   /*background: #eee4e5;*/
 }
 
+.align-score {
+  /*margin-left: 30%;*/
+  width: 100%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  /*height: 650px;*/
+  /*background: #eee4e5;*/
+}
+
+.one {
+    width: 15%;
+    /*height: 200px;*/
+    background: red;
+    float: left;
+}
+.two {
+    margin-left: 15%;
+    /*height: 200px;*/
+    background: black;
+}
+
 hr {
   display: block;
   border: 0;
@@ -59,20 +80,52 @@ hr {
   background: #69b390;
   /*padding: 5px;*/
   /*width: 180px;*/
-  width: 15vh;
-  /*width: 15%;*/
+  /*width: 15vh;*/
+  width: 12%;
   /*height: 150px;*/
-  height: 15vh;
+  /*height: 15vh;*/
+  padding-bottom: 7%;
   /*height: 10%;*/
   margin: 8px 8px 0 0;
   /*margin: 0 0 2px 0;*/
   /*line-height: 150px;*/
-  line-height: 1000%;
+  /*line-height: 1000%;*/
   color: black;
   font-weight: bold;
-  /*font-size: 3em;*/
+  font-size: 1.5em;
   text-align: center;
+  /*justify-content: center;*/
+}
+
+.aligner {
+  display: flex;
+  align-items: center;
   justify-content: center;
+}
+
+.aligner-item {
+  text-align: center;
+  padding-bottom: 3%;
+  padding-top: 3%;
+  width: 10%;
+  border-color: orange;
+  /*background-color:orange;*/
+  background: #69b390;
+  border-width: 2px;
+  border-style: solid;
+  /*max-width: 20vh;*/
+  margin-right: 2%;
+  margin-bottom: 2%;
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.aligner-item--top {
+  align-self: flex-start;
+}
+
+.aligner-item--bottom {
+  align-self: flex-end;
 }
 
 .row {

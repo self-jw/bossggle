@@ -1,7 +1,7 @@
 
 $(document).ready(function () {
 
-  var logHTML = '';
+  var lettersHTML = '';
   var totalScore = 0;
   var totalWords = 0;
   var wordHash = {};
@@ -11,39 +11,40 @@ $(document).ready(function () {
 
   // The 16 boxes are in the list section.
   // TODO: Don't restrict to particular section.
-  $('li').click(function () {
+  $('.aligner-item').click(function () {
 
     var idElement = document.getElementById(this.id);
     var content = idElement.innerHTML;
 
     idElement.style.backgroundColor = 'red';
 
-    logHTML += content;
-    $('#letters').html(logHTML);
+    lettersHTML += content;
+    $('#letters').html(lettersHTML);
   });
 
   // Clear the letter field.
   $('#clear').on('click', function () {
-    $('#letters').html('');
-    logHTML = '';
+    resetBoxColor();
+    $('#letters').html('Selected Letters');
+    lettersHTML = '';
   });
 
   // Submit the letter field and add to word list.
   $('#submit').on('click', function () {
-    if (logHTML.length > 0) {
-      if (!(logHTML in wordHash)) {
-        document.getElementById('chosen-words').innerHTML += logHTML + '<br>';
+    if (lettersHTML.length > 0) {
+      if (!(lettersHTML in wordHash)) {
+        document.getElementById('chosen-words').innerHTML += lettersHTML + '<br>';
 
-        var oneWordScore = checkWord(logHTML);
+        var oneWordScore = checkWord(lettersHTML);
         document.getElementById('word-score').innerHTML += oneWordScore + '<br>';
         totalScore += oneWordScore;
 
         document.getElementById('score-tally').innerHTML = totalScore;
 
         // Add key/value to word hash.
-        wordHash[logHTML] = oneWordScore;
+        wordHash[lettersHTML] = oneWordScore;
 
-        // console.log('Word in Dic : ' + logHTML + '  Score in Dic: ' + wordHash[logHTML]);
+        // console.log('Word in Dic : ' + lettersHTML + '  Score in Dic: ' + wordHash[lettersHTML]);
 
         // Rest the box colors.
         resetBoxColor();
@@ -51,7 +52,7 @@ $(document).ready(function () {
     }
 
     // Clear the log html string. Always at the end!
-    logHTML = '';
+    lettersHTML = '';
   });
 
   // Reset board.
@@ -115,7 +116,7 @@ function resetBoxColor() {
     var boxID = 'box' + i;
     var idElement = document.getElementById(boxID);
 
-    // TODO: Color to global variable.
+    // TODO: Color to global variable?
     idElement.style.backgroundColor = '#69b390';
   }
 }
