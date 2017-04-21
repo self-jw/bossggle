@@ -56,6 +56,9 @@
             </div>
           </div>
         </div>
+        <div>
+          <a class="github" href="https://github.com/self-jw/bossggle">Fork me on github.</a>
+        </div>
       </div>
 
       <!-- Right Panel -->
@@ -67,9 +70,9 @@
           <button id="clear" class="btn btn-success" style="opacity:0.65">Clear</button>
           <button id="reset" class="btn btn-danger" style="opacity:0.65">Reset Board</button>
         </div>
-        <div>
+        <!-- <div>
           <button id="start" class="btn btn-start" style="opacity:0.5">Start Game</button>
-        </div>
+        </div> -->
         <hr/>
 
         <!-- First Row -->
@@ -107,6 +110,17 @@
         <!-- Timer -->
         <div>
           <h3 style="text-align:center">Time Left : <span id='timer'>60</span></h3>
+        </div>
+
+        <!-- The Modal -->
+        <div id="modal-game-over" class="modal">
+          <!-- Modal content -->
+          <div class="modal-content" style="text-align:center">
+            <span class="close">&times;</span>
+            <h3>Game Over!</h3>
+            <!-- <h5>Score<span id="score-tally" class="score-right">0</span></h5> -->
+            <button id="game-over" class="btn btn-game" style="opacity:0.5">Play Again</button>
+          </div>
         </div>
 
       </div>

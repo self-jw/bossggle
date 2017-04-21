@@ -1,17 +1,18 @@
 
+
+var timeInterval;
+
 $(document).ready(function () {
 
     var lettersHTML = '';
     var totalScore = 0;
     var totalWords = 0;
-    var wordHash = {};
+    var wordHash = {};  // key/value -- word/score
 
     // Set initial random letters.
     randomLetters();
 
-    if (timer() === 0) {
-      console.log('Game Ended');
-    }
+    var timerID = timer(60);
 
     // The 16 boxes are in the list section.
     $('.aligner-item').click(function () {
@@ -75,26 +76,40 @@ $(document).ready(function () {
           $('#letters').html('<br>');
           lettersHTML = '';
 
-          // Reset the box colors.
-          resetBoxes();
         }
+
+        // Reset the box colors.
+        resetBoxes();
       }
 
       // Clear the log html string. Always at the end!
       lettersHTML = '';
     });
 
-    // Reset board.
+    // Reset board with new random letters.
     $('#reset').on('click', function () {
+      randomLetters();
+    });
+
+    // Start a new game.
+    // Reset the board, score, letter fields, and timer.
+    $('#game-over').on('click', function () {
+
+      var modal = document.getElementById('modal-game-over');
+      modal.style.display = 'none';
+
       $('#word-score').html('');
       $('#chosen-words').html('');
       $('#letters').html('Selected Letters');
       $('#score-tally').html('');
+      randomLetters();
       lettersHTML = '';
       totalScore = 0;
-      resetBoxes();
-      randomLetters();
       wordHash = {};
+      resetBoxes();
+      clearInterval(timerID);
+      timerID = timer(60);
+
     });
 
   });
@@ -153,19 +168,21 @@ function resetBoxes() {
   }
 }
 
-function timer() {
-  var timeInterval = 9;
-  setInterval(function () {
+function timer(timeInSeconds) {
+  timeInterval = timeInSeconds;
+
+  var modal = document.getElementById('modal-game-over');
+
+  var timerID = setInterval(function () {
     document.getElementById('timer').innerHTML = timeInterval;
     if (timeInterval === 0) {
-      // alert('Time Ran Out!');
-      return timeInterval;
+      // Get the modal
+      modal.style.display = 'block';
+
+      return timerID;
     }
 
     timeInterval--;
   }, 1000);
-}
-
-function logWords() {
 
 }
